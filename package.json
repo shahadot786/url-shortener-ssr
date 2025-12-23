@@ -1,0 +1,20 @@
+{
+  "name": "short-url",
+  "version": "1.0.0",
+  "description": "This is a url shortener.",
+  "license": "ISC",
+  "author": "MD Shahadot Hossain",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.0.2",
+    "nanoid": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
