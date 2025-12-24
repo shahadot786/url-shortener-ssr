@@ -18,11 +18,7 @@ export const handleGenerateNewShortUrl = async (req, res) => {
     visitHistory: [],
   });
 
-  return res.status(201).json({
-    status: "Success",
-    message: "Short url successfully.",
-    data: { id: shortID },
-  });
+  return res.render("home", { id: shortID });
 };
 
 export const getShortId = async (req, res) => {
