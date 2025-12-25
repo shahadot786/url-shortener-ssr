@@ -1,8 +1,14 @@
 import express from "express";
 import path from "path";
 import router from "./routes/url.route.js";
+import userRouter from "./routes/user.route.js";
 import connectDB from "./config/dbConnection.js";
 import staticRoute from "./routes/staticRouter.js";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import { authRestriction, checkAuth } from "./middlewares/auth.middleware.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = 8000;
@@ -18,9 +24,11 @@ app.set("views", path.resolve("./src/views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-app.use("/api", router);
-app.use("/", staticRoute);
+app.use("/api", authRestriction, router);
+app.use("/", checkAuth, staticRoute);
+app.use("/user", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
