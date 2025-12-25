@@ -16,6 +16,7 @@ export const handleGenerateNewShortUrl = async (req, res) => {
     shortId: shortID,
     redirectUrl: url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
 
   return res.render("home", { id: shortID, baseUrl: process.env.BASE_URL });

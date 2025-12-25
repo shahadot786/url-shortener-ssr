@@ -1,4 +1,6 @@
 import { User } from "../models/user.model.js";
+import { v4 as uuidV4 } from "uuid";
+import { setUser } from "../services/auth.service.js";
 
 export const createUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -29,13 +31,16 @@ export const signInUser = async (req, res) => {
   }
 
   //check if exists the user
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({ email, password });
 
   if (!user) {
     return res.render("signin", { error: "No user found with this email." });
   }
 
   if (email === user?.email && password === user?.password) {
+    const sessionId = uuidV4();
+    setUser(sessionId, user);
+    res.cookie("uid", sessionId);
     return res.redirect("/");
   } else {
     return res.render("signin", { error: "Something is not match." });
