@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
   const allUrls = await URL.find({}).sort({ createdAt: -1 });
   return res.render("home", {
     urls: allUrls,
+    baseUrl: process.env.BASE_URL,
   });
 });
 

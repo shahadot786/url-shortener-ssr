@@ -3,6 +3,9 @@ import path from "path";
 import router from "./routes/url.route.js";
 import connectDB from "./config/dbConnection.js";
 import staticRoute from "./routes/staticRouter.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = 8000;

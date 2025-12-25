@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteUrl,
   getAllUrls,
   getAnalytics,
   getShortId,
@@ -12,5 +13,6 @@ router.post("/url", handleGenerateNewShortUrl);
 router.get("/url", getAllUrls);
 router.get("/url/:shortId", getShortId);
 router.get("/url/analytics/:shortId", getAnalytics);
+router.delete("/url/:id", deleteUrl);
 
 export default router;

@@ -18,7 +18,7 @@ export const handleGenerateNewShortUrl = async (req, res) => {
     visitHistory: [],
   });
 
-  return res.render("home", { id: shortID });
+  return res.render("home", { id: shortID, baseUrl: process.env.BASE_URL });
 };
 
 export const getShortId = async (req, res) => {
@@ -73,5 +73,22 @@ export const getAnalytics = async (req, res) => {
       totalClicks: result.visitHistory.length,
       analytics: result.visitHistory,
     },
+  });
+};
+
+export const deleteUrl = async (req, res) => {
+  const { id } = req.params;
+  const deletedUrl = await URL.findByIdAndDelete(id);
+
+  if (!deletedUrl) {
+    return res.status(404).json({
+      success: false,
+      message: "URL not found",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    message: "URL deleted successfully",
   });
 };
