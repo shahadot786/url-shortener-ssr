@@ -38,6 +38,23 @@
         color: #2a5298;
       }
 
+      /* User Info */
+      .user-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f1f5ff;
+        border: 1px solid #cfd9ff;
+        padding: 12px 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      .user-info strong {
+        color: #1e3c72;
+      }
+
       .result {
         background: #f1f5ff;
         border: 1px solid #cfd9ff;
@@ -127,6 +144,12 @@
       }
 
       @media (max-width: 600px) {
+        .user-info {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+
         table {
           font-size: 12px;
         }
@@ -138,7 +161,18 @@
     <div class="container">
       <h1>URL Shortener</h1>
 
-      <% if (locals.id) { %>
+      <!-- User Info -->
+      <% if (locals.name) { %>
+      <div class="user-info">
+        <div>
+          <strong>User:</strong> <%= name %><br />
+          <strong>Email:</strong> <%= email %>
+        </div>
+        <div>
+          <a href="/user/logout">Logout</a>
+        </div>
+      </div>
+      <% } %> <% if (locals.id) { %>
       <div class="result">
         <strong>Generated Short URL:</strong><br />
         <a href="<%= baseUrl %>/api/url/<%= id %>" target="_blank">
@@ -212,6 +246,9 @@
         try {
           const res = await fetch(`/api/url/${id}`, {
             method: "DELETE",
+            headers: {
+              Accept: "application/json",
+            },
           });
 
           const data = await res.json();
