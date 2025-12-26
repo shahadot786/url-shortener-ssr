@@ -14,7 +14,7 @@ export const authRestriction = async (req, res, next) => {
 };
 
 export const checkAuth = async (req, res, next) => {
-  const userId = req?.cookies?.uid;
+  const userId = req?.cookies?.accessToken;
   const user = getUser(userId);
   req.user = user;
   next();
