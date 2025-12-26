@@ -1,11 +1,11 @@
 import { getUser } from "../services/auth.service.js";
 
 export const authRestriction = async (req, res, next) => {
-  const userId = req?.cookies?.uid;
+  const token = req?.cookies?.accessToken;
 
-  if (!userId) return res.redirect("/signin");
+  if (!token) return res.redirect("/signin");
 
-  const user = getUser(userId);
+  const user = getUser(token);
 
   if (!user) return res.redirect("/signin");
 
@@ -14,8 +14,8 @@ export const authRestriction = async (req, res, next) => {
 };
 
 export const checkAuth = async (req, res, next) => {
-  const userId = req?.cookies?.accessToken;
-  const user = getUser(userId);
+  const token = req?.cookies?.accessToken;
+  const user = getUser(token);
   req.user = user;
   next();
 };
