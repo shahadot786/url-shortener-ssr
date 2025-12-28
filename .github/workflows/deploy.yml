@@ -15,7 +15,7 @@ jobs:
       - name: Trigger Render Deployment
         run: |
           echo "🚀 Triggering Render deployment..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}")
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "${{ secrets.RENDER_DEPLOY_URL_SHORT_HOOK_URL }}")
 
           if [ "$response" -eq 200 ] || [ "$response" -eq 201 ]; then
             echo "✅ Deployment triggered successfully"
