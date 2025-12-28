@@ -159,6 +159,10 @@
 
   <body>
     <div class="container">
+      <% if (locals.id) { %>
+      <h5><a href="<%= baseUrl %>/">◀ Go Back</a></h5>
+      <% } %>
+
       <h1>URL Shortener</h1>
 
       <!-- User Info -->

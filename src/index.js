@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 const PORT = 8000;
-const DBUrl = "mongodb://127.0.0.1:27017/short-url";
+const DBUrl = process.env.DB_URL;
 
 //connect db
 connectDB(DBUrl)
