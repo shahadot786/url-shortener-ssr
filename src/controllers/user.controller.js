@@ -46,5 +46,6 @@ export const signInUser = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-  return res.render("signin");
+  res.clearCookie("accessToken");
+  return res.redirect("/signin");
 };

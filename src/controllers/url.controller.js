@@ -19,7 +19,12 @@ export const handleGenerateNewShortUrl = async (req, res) => {
     createdBy: req.user._id,
   });
 
-  return res.render("home", { id: shortID, baseUrl: process.env.BASE_URL });
+  return res.render("home", {
+    id: shortID,
+    baseUrl: process.env.BASE_URL,
+    name: req.user.name,
+    email: req.user.email,
+  });
 };
 
 export const getShortId = async (req, res) => {

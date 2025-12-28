@@ -11,6 +11,8 @@ router.get("/", async (req, res) => {
   return res.render("home", {
     urls: allUrls,
     baseUrl: process.env.BASE_URL,
+    name: req.user.name,
+    email: req.user.email,
   });
 });
 
