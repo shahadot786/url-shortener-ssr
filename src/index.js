@@ -31,5 +31,5 @@ app.use("/", checkAuth, staticRoute);
 app.use("/user", userRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server is running at ${process.env.BASE_URL}:${PORT}`);
 });
